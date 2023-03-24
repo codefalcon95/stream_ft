@@ -8,7 +8,7 @@ export const databaseProviders = [
     useFactory: async () => {
       const dataSource = new DataSource({
         type: 'postgres',
-        url: ENV_VARIABLES.DATABASE_URL,
+        url: 'postgres://postgres:secret@localhost:5432/stream_ft?sslmode=disable',
         ssl: {
           rejectUnauthorized: false,
         },

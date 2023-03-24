@@ -16,7 +16,7 @@ export class AppService {
     //
   }
 
-  async search(userId: string, word: string) {
+  async search(word: string, userId: string) {
     const [user, userQueries] = await Promise.all([
       this.userRepository.findOne({
         where: { id: userId },
@@ -36,7 +36,7 @@ export class AppService {
       ),
     );
     if (!userQueries) {
-      this.userQueryRepository.create({
+      this.userQueryRepository.save({
         userId,
         queryString: word,
       });
@@ -45,8 +45,9 @@ export class AppService {
   }
 
   async createUser(userDto: UserDto) {
-    return this.userRepository.create({
-      userName: userDto.userName,
+    console.log(userDto);
+    return this.userRepository.save({
+      userName: userDto.username,
     });
   }
 }

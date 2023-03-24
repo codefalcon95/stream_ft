@@ -1,6 +1,14 @@
-import { BaseEntity, Column, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { User } from './user.entity';
 
+@Entity()
 export class UserQueries extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -13,5 +21,5 @@ export class UserQueries extends BaseEntity {
 
   @ManyToOne(() => User, (user) => user.userQueries)
   @JoinColumn({ name: 'userId' })
-  user: User;
+  user?: User;
 }
